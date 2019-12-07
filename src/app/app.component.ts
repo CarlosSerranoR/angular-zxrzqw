@@ -641,7 +641,7 @@ export class AppComponent {
         // console.log("dataForm[key]", dataForm[key]);
         // console.log("dataForm", dataForm);
         if (dataForm instanceof FormGroup) {
-          dataForm.addControl([key], this.fb.group({}));
+          dataForm.addControl([key][0], this.fb.group({}));
           this.createForm(data[key], dataForm.get(key));
         } else {
           dataForm[key] = this.fb.group({});
@@ -653,7 +653,7 @@ export class AppComponent {
           // console.log("controlKey", [key]);
           // console.log("dataForm", dataForm);
           dataForm.addControl(
-            [key],
+            [key][0],
             new FormControl(data[key], Validators.required)
           );
         } else {
