@@ -9,7 +9,7 @@ import {
 @Component({
   selector: "app-root",
   template: `
-    <form [formGroup]="questionForm">
+    <form [formGroup]="questionForm" (ngSubmit)="submitEvent()">
       <h1>Question Form</h1>
       <ng-container>
       </ng-container>
@@ -633,7 +633,7 @@ export class AppComponent {
     // console.log("dataForm ", this.dataForm);
     let form = this.fb.group(this.dataForm);
 
-    console.log("form ", form);
+    // console.log("form ", form);
     this.questionForm = form;
 
   //  this.questionForm =this.fb.group({
@@ -646,7 +646,9 @@ export class AppComponent {
   //   });
     //  console.log(this.questionForm);
   }
-
+submitEvent(){
+  console.log(this.questionForm.value)
+}
   createForm(data, dataForm) {
     for (let key of Object.keys(data)) {
       // console.log(key);

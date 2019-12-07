@@ -18,21 +18,29 @@
         </fieldset>-->
 		<!-- <ng-container *ngIf="isObject(group)"> </ng-container> -->
 		<ng-container *ngFor="let control of getKeys(group.controls)">
-
+			<!-- {{control}} -->
 			<div *ngIf="isFormGroup(group.controls[control])" class="form-group" [formGroup]="group.controls[control]">
-				<!-- <span>{{control}}</span> -->
-				<!-- {{ control }} -->
+				<h1>{{control}}</h1>
+				<!-- {{ getKeys(group.controls[control].controls) }} -->
+        <ng-container *ngFor="let controlName of getKeys(group.controls[control].controls)">
+          <div *ngIf="isFormControl(group.controls[control].controls[controlName])" class="form-control">
+              <label>{{controlName}}</label>
+              <input type="text" formControlName="{{controlName}}"/>
+
+          </div>
+        </ng-container>
+		
 				<ng-container *ngTemplateOutlet="
               formItemTemplate;
               context: { $implicit: i + 1, group: group.controls[control] }
             ">
 				</ng-container>
-			</div>
-			<!-- <div *ngIf="isFormControl(group.controls[control])" class="form-control"
-				[formControlName]="group.controls[control]">
-				<span>{{control}}</span>
+				<!-- <div *ngIf="isFormControl(group.controls[control])" class="form-control">
+					<label>{{control}}</label>
+					<input type="text" formControlName="{{control}}"/>
 
 			</div> -->
+				</div>
 		</ng-container>
 
 		<!-- <div

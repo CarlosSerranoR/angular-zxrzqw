@@ -31,7 +31,7 @@ export class AppControlComponent {
   }
   isFormControl(val) {
     
-    // console.log(val.value)
+    // console.log(val)
     
     return val instanceof FormControl;
   }
