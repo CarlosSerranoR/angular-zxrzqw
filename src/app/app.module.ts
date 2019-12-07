@@ -1,0 +1,19 @@
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxRecursiveFormModule } from "ngx-recursive-form";
+import { AppComponent } from "./app.component";
+import { AppControlComponent } from "./app-control.component";
+import { TreeNode } from "./tree-node.component";
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxRecursiveFormModule
+  ],
+  declarations: [AppComponent, AppControlComponent, TreeNode],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}

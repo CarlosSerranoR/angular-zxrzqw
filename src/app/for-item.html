@@ -1,0 +1,47 @@
+<ng-container [formGroup]="form">
+	<ng-container *ngTemplateOutlet="
+          formItemTemplate;
+          context: { $implicit: 0, group: form }
+        ">
+	</ng-container>
+
+	<ng-template #formItemTemplate let-i let-group="group">
+		<!-- <fieldset *ngIf="i < pathSegments.length - 1" class="form-group">
+          <legend>{{ pathSegments[i] }}</legend>
+          <ng-container
+            *ngTemplateOutlet="
+              formItemTemplate;
+              context: { $implicit: i + 1, group: group.get(pathSegments[i]) }
+            "
+          >
+          </ng-container>
+        </fieldset>-->
+		<!-- <ng-container *ngIf="isObject(group)"> </ng-container> -->
+		<ng-container *ngFor="let control of getKeys(group.controls)">
+
+			<div *ngIf="isFormGroup(group.controls[control])" class="form-group" [formGroup]="group.controls[control]">
+				<!-- <span>{{control}}</span> -->
+				<!-- {{ control }} -->
+				<ng-container *ngTemplateOutlet="
+              formItemTemplate;
+              context: { $implicit: i + 1, group: group.controls[control] }
+            ">
+				</ng-container>
+			</div>
+			<!-- <div *ngIf="isFormControl(group.controls[control])" class="form-control"
+				[formControlName]="group.controls[control]">
+				<span>{{control}}</span>
+
+			</div> -->
+		</ng-container>
+
+		<!-- <div
+          *ngIf="i + 1 === pathSegments.length"
+          class="form-control"
+          [formGroup]="group"
+        >
+          <label>{{ pathSegments[pathSegments.length - 1] }}</label>
+          <input [formControlName]="pathSegments[pathSegments.length - 1]" />
+        </div>-->
+	</ng-template>
+</ng-container>
