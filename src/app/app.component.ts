@@ -635,11 +635,7 @@ export class AppComponent {
   }
   createForm(data, dataForm) {
     for (let key of Object.keys(data)) {
-      // console.log(key);
       if (data[key] instanceof Object) {
-        // console.log("key ", key);
-        // console.log("dataForm[key]", dataForm[key]);
-        // console.log("dataForm", dataForm);
         if (dataForm instanceof FormGroup) {
           dataForm.addControl([key][0], this.fb.group({}));
           this.createForm(data[key], dataForm.get(key));
@@ -649,9 +645,6 @@ export class AppComponent {
         }
       } else {
         if (dataForm instanceof FormGroup) {
-          // console.log("controlDatakey", data[key]);
-          // console.log("controlKey", [key]);
-          // console.log("dataForm", dataForm);
           dataForm.addControl(
             [key][0],
             new FormControl(data[key], Validators.required)
@@ -659,9 +652,6 @@ export class AppComponent {
         } else {
           dataForm[key] = [data[key], Validators.required];
         }
-
-        // console.log("controlKey ", key);
-        //  dataForm[key].addControl(key, new FormControl("", Validators.required));
       }
     }
   }
