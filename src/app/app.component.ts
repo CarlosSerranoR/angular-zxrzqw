@@ -636,21 +636,21 @@ export class AppComponent {
   createForm(data, dataForm) {
     for (let key of Object.keys(data)) {
       if (data[key] instanceof Object) {
-        if (dataForm instanceof FormGroup) {
-          dataForm.addControl([key][0], this.fb.group({}));
-          this.createForm(data[key], dataForm.get(key));
-        }
+        // if (dataForm instanceof FormGroup) {
+        dataForm.addControl([key][0], this.fb.group({}));
+        this.createForm(data[key], dataForm.get(key));
+        // }
         // else {
         //   dataForm[key] = this.fb.group({});
         //   this.createForm(data[key], dataForm[key]);
         // }
       } else {
-        if (dataForm instanceof FormGroup) {
-          dataForm.addControl(
-            [key][0],
-            new FormControl(data[key], Validators.required)
-          );
-        }
+        // if (dataForm instanceof FormGroup) {
+        dataForm.addControl(
+          [key][0],
+          new FormControl(data[key], Validators.required)
+        );
+        // }
         // else {
         //   dataForm[key] = [data[key], Validators.required];
         // }
