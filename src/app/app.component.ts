@@ -9,21 +9,19 @@ import {
 @Component({
   selector: "app-root",
   template: `
-    <form [formGroup]="questionForm" (ngSubmit)="submitEvent()">
+    <form [formGroup]="form" (ngSubmit)="submitEvent()">
       <h1>Question Form</h1>
-      <ng-container>
-      </ng-container>
-      <form-item [form]="questionForm"></form-item>
-      
+      <ng-container> </ng-container>
+      <form-item [form]="form"></form-item>
 
       <button type="submit">submit</button>
 
-      <pre>{{ questionForm.value | json }}</pre>
+      <pre>{{ form.value | json }}</pre>
     </form>
   `
 })
 export class AppComponent {
-  private questionForm: FormGroup;
+  private form: FormGroup;
 
   data = {
     DatosPoliza: {
@@ -625,30 +623,16 @@ export class AppComponent {
       }
     }
   };
-  dataForm;
+  dataForm= {};
 
   constructor(private fb: FormBuilder) {
-    this.dataForm = {};
     this.createForm(this.data, this.dataForm);
-    // console.log("dataForm ", this.dataForm);
-    let form = this.fb.group(this.dataForm);
 
-    // console.log("form ", form);
-    this.questionForm = form;
-
-  //  this.questionForm =this.fb.group({
-  //     question: ["", Validators.required],
-  //     answers: this.fb.group({
-  //       answer1: ["", Validators.required],
-  //       answer2: ["", Validators.required],
-  //       answer3: ["", Validators.required]
-  //     })
-  //   });
-    //  console.log(this.questionForm);
+    this.form = this.fb.group(this.dataForm);
   }
-submitEvent(){
-  console.log(this.questionForm.value)
-}
+  submitEvent() {
+    console.log(this.form.value);
+  }
   createForm(data, dataForm) {
     for (let key of Object.keys(data)) {
       // console.log(key);
@@ -657,10 +641,7 @@ submitEvent(){
         // console.log("dataForm[key]", dataForm[key]);
         // console.log("dataForm", dataForm);
         if (dataForm instanceof FormGroup) {
-          dataForm.addControl(
-            [key],
-            this.fb.group({})
-          );
+          dataForm.addControl([key], this.fb.group({}));
           this.createForm(data[key], dataForm.get(key));
         } else {
           dataForm[key] = this.fb.group({});

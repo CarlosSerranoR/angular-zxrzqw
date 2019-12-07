@@ -6,50 +6,26 @@
 	</ng-container>
 
 	<ng-template #formItemTemplate let-i let-group="group">
-		<!-- <fieldset *ngIf="i < pathSegments.length - 1" class="form-group">
-          <legend>{{ pathSegments[i] }}</legend>
-          <ng-container
-            *ngTemplateOutlet="
-              formItemTemplate;
-              context: { $implicit: i + 1, group: group.get(pathSegments[i]) }
-            "
-          >
-          </ng-container>
-        </fieldset>-->
-		<!-- <ng-container *ngIf="isObject(group)"> </ng-container> -->
 		<ng-container *ngFor="let control of getKeys(group.controls)">
-			<!-- {{control}} -->
 			<div *ngIf="isFormGroup(group.controls[control])" class="form-group" [formGroup]="group.controls[control]">
 				<h1>{{control}}</h1>
-				<!-- {{ getKeys(group.controls[control].controls) }} -->
-        <ng-container *ngFor="let controlName of getKeys(group.controls[control].controls)">
-          <div *ngIf="isFormControl(group.controls[control].controls[controlName])" class="form-control">
-              <label>{{controlName}}</label>
-              <input type="text" formControlName="{{controlName}}"/>
+				<!-- recorremos los controles que no sean groups para mostralos -->
+				<ng-container *ngFor="let controlName of getKeys(group.controls[control].controls)">
+					<div *ngIf="isFormControl(group.controls[control].controls[controlName])" class="form-control">
+						<label>{{controlName}}</label>
+						<input type="text" formControlName="{{controlName}}"/>
 
           </div>
-        </ng-container>
-		
+				</ng-container>
+				<!-- Una vez recorridos todos los controles que no son group, entramos en el group actual para seguir anidando -->
 				<ng-container *ngTemplateOutlet="
               formItemTemplate;
               context: { $implicit: i + 1, group: group.controls[control] }
             ">
 				</ng-container>
-				<!-- <div *ngIf="isFormControl(group.controls[control])" class="form-control">
-					<label>{{control}}</label>
-					<input type="text" formControlName="{{control}}"/>
 
-			</div> -->
-				</div>
+			</div>
 		</ng-container>
 
-		<!-- <div
-          *ngIf="i + 1 === pathSegments.length"
-          class="form-control"
-          [formGroup]="group"
-        >
-          <label>{{ pathSegments[pathSegments.length - 1] }}</label>
-          <input [formControlName]="pathSegments[pathSegments.length - 1]" />
-        </div>-->
 	</ng-template>
 </ng-container>

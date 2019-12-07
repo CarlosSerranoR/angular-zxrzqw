@@ -24,19 +24,12 @@ export class AppControlComponent {
   constructor() {}
 
   isFormGroup(val) {
-     
-    //  console.log(val)
-     
     return val instanceof FormGroup;
   }
   isFormControl(val) {
-    
-    // console.log(val)
-    
     return val instanceof FormControl;
   }
   getKeys(val){
-    // console.log(Object.keys(val))
     return Object.keys(val)
   }
 }
