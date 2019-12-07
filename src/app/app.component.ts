@@ -622,12 +622,13 @@ export class AppComponent {
       }
     }
   };
-  dataForm= {};
+  dataForm;
 
   constructor(private fb: FormBuilder) {
+    this.dataForm = this.fb.group({}); // {}
     this.createForm(this.data, this.dataForm);
 
-    this.form = this.fb.group(this.dataForm);
+    this.form = this.dataForm;
   }
   submitEvent() {
     console.log(this.form.value);
@@ -638,19 +639,21 @@ export class AppComponent {
         if (dataForm instanceof FormGroup) {
           dataForm.addControl([key][0], this.fb.group({}));
           this.createForm(data[key], dataForm.get(key));
-        } else {
-          dataForm[key] = this.fb.group({});
-          this.createForm(data[key], dataForm[key]);
         }
+        // else {
+        //   dataForm[key] = this.fb.group({});
+        //   this.createForm(data[key], dataForm[key]);
+        // }
       } else {
         if (dataForm instanceof FormGroup) {
           dataForm.addControl(
             [key][0],
             new FormControl(data[key], Validators.required)
           );
-        } else {
-          dataForm[key] = [data[key], Validators.required];
         }
+        // else {
+        //   dataForm[key] = [data[key], Validators.required];
+        // }
       }
     }
   }
