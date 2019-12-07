@@ -10,9 +10,9 @@ import {
 
 @Component({
   selector: "form-item",
-  templateUrl: "./for-item.html"
+  templateUrl: "./form-item.html"
 })
-export class AppControlComponent {
+export class FormItemComponent {
   @Input() form: FormGroup;
 
   @Input()

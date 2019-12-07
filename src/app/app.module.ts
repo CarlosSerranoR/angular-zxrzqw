@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxRecursiveFormModule } from "ngx-recursive-form";
 import { AppComponent } from "./app.component";
-import { AppControlComponent } from "./app-control.component";
+import { FormItemComponent } from "./form-item.component";
 import { TreeNode } from "./tree-node.component";
 
 @NgModule({
@@ -13,7 +13,7 @@ import { TreeNode } from "./tree-node.component";
     ReactiveFormsModule,
     NgxRecursiveFormModule
   ],
-  declarations: [AppComponent, AppControlComponent, TreeNode],
+  declarations: [AppComponent, FormItemComponent, TreeNode],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
