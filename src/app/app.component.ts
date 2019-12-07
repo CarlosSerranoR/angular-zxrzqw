@@ -10,8 +10,7 @@ import {
   selector: "app-root",
   template: `
     <form [formGroup]="form" (ngSubmit)="submitEvent()">
-      <h1>Question Form</h1>
-      <ng-container> </ng-container>
+      <h1>Form de ejemplo</h1>
       <form-item [form]="form"></form-item>
 
       <button type="submit">submit</button>
